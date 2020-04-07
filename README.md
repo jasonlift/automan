@@ -5,5 +5,15 @@ Originally, automan is expected to be a tool for synchronization between differe
 
 It is very important to speed up your efficiency by using any automated tools.
 
-# components
+# design & components
+In the v0.1 version, automan is launched by `main.sh` script, which executes many shell commands to configure global environment variables and do some setup works.
+
+It is designed as a plugin-enable manner, whose components can be specified in the `modules.conf` file. The program would search the specific module script according to the name configured in the `modules.conf` and execute the `entrypoint.sh` in the corresponding directory.
+
+# setup guide
+
+
+# changelog
+version: v0.1, date: , features: 
+
 
