@@ -11,6 +11,10 @@
 # 2. install packages and binary executive files
 # 3. attach golang config file to `~/.config`
 #---------------------------------------------------
+# import utility functions
+if [ ! -n "$AUTOMAN_UTILS_FLAG" ]; then
+  source ../utils.sh
+fi
 
 # define the global variables
 CONFIG_PATH=$HOME"/.config"
@@ -19,28 +23,6 @@ GOPATH=$HOME"/go"
 GOPATH_BIN=$GOPATH"/bin"
 GOPATH_PKG=$GOPATH"/pkg"
 GOPATH_SRC=$GOPATH"/src"
-now_cmd=`date '+%F %T'`
-
-function info() {
-  echo "[INFO-$now_cmd] $1"
-}
-
-function warn() {
-  echo "[WARN-$now_cmd] $1"
-}
-
-function error() {
-  echo "[ERROR-$now_cmd] $1"
-}
-
-function createDir() {
-  if [ ! -d "$1" ]; then
-    mkdir $1
-    info "createDir $1"
-  else
-    info "$1 is existed"
-  fi
-}
 
 function goCmdExisted() {
   if command -v go >/dev/null 2>&1; then
@@ -52,6 +34,8 @@ function goCmdExisted() {
 }
 
 # main process
+function execute() {
+echo "---------------------------------------------------------"
 info "execute golang module script"
 goCmdExisted # test if go cmd existed
 # stage1: create global variables & necessary directory
@@ -71,3 +55,7 @@ cat <<EOF > $GO_CONFIG_PATH
 export GOPATH="$GOPATH"
 export PATH="$GOPATH_BIN:\$PATH"
 EOF
+}
+
+execute
+

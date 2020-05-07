@@ -1,5 +1,4 @@
-
 all:
-	@echo "TO execute main.sh..."
+	@echo "T execute main.sh..."
 	bash main.sh
 
