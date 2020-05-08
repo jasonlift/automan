@@ -18,7 +18,9 @@ function invokeEntryPoint() {
   path=$(echo "./$1/entrypoint.sh")
   source $path
   config_file_path=$CONFIG_PATH"/$1_config"
+  # if ***_config file exists
   if [ -f "$config_file_path" ]; then
+    # if ~/.zshrc file does not contain `source xxx_config` command
     if [ `grep -c "source $config_file_path" $ZSH_PROFILE` -eq '0' ]; then
       info "add source $config_file_path cmd into the zshrc file"
       echo "# refresh $1 config file" >> $ZSH_PROFILE
